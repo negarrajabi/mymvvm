@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data class="RecyclerBinding">
+        <variable
+            name="item"
+            type="com.testapp.viewModel.UserViewModel" />
+    </data>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
@@ -15,13 +21,14 @@
         android:src="@mipmap/ic_launcher" />
 
     <TextView
+
         android:id="@+id/username"
         android:layout_width="fill_parent"
         android:layout_height="26dip"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/icon"
-        android:text="Description"
+        android:text="@{item.name}"
         android:textSize="12sp" />
 
     <TextView
@@ -29,9 +36,10 @@
         android:layout_width="fill_parent"
         android:layout_height="26dip"
         android:layout_toRightOf="@id/icon"
-        android:text="Description"
+        android:text="@{item.phone}"
         android:textSize="12sp" />
 
 
 
 </RelativeLayout>
+</layout>
