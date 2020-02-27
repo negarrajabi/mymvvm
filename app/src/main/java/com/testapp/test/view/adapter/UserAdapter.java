@@ -53,6 +53,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.customHolder>{
         public void bind(UserViewModel userViewModel){
             this.recyclerBinding.setItem(userViewModel);
             this.recyclerBinding.executePendingBindings();
+
         }
 
         public RecyclerBinding getRecyclerBinding() {

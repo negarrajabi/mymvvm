@@ -4,21 +4,27 @@ package com.testapp.test;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+
+import androidx.databinding.DataBindingUtil;
+
+import com.testapp.model.User;
+import com.testapp.test.databinding.ActivityMain2Binding;
+import com.testapp.viewModel.UserViewModel;
 
 public class Main2Activity extends Activity {
+        User user;
         String s1,s2,s3;
         int i;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main2);
-            final TextView address = findViewById(R.id.addressTextView);
-            address.setText(getIntent().getStringExtra("address"));
-            final TextView name = findViewById(R.id.nameTextView);
-            name.setText(getIntent().getStringExtra("id"));
-            final TextView id = findViewById(R.id.idTextView);
-            id.setText(getIntent().getStringExtra("username"));
+            user=new User(getIntent().getStringExtra("name"),getIntent().getStringExtra("phone"),getIntent().getStringExtra("address"));
+
+            ActivityMain2Binding activityMainBinding= DataBindingUtil.setContentView(this, R.layout.activity_main2,null);
+            UserViewModel userViewModel=new UserViewModel(user);
+            activityMainBinding.setUser(userViewModel);
+
         }
 
         @Override
@@ -26,7 +32,7 @@ public class Main2Activity extends Activity {
             Intent intent=new Intent();
             intent.putExtra("username",s1);
             intent.putExtra("address",s2);
-            intent.putExtra("id",s3);
+            intent.putExtra("phone",s3);
             setResult(RESULT_OK,intent);
             super.finish();
         }

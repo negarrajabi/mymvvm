@@ -1,27 +1,39 @@
 package com.testapp.viewModel;
 
 import android.content.Context;
+import android.content.Intent;
+import android.view.View;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.BindingAdapter;
-
 import androidx.databinding.library.baseAdapters.BR;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.testapp.model.User;
+import com.testapp.test.Main2Activity;
+import com.testapp.test.onItemInterface;
 import com.testapp.test.view.adapter.UserAdapter;
 
 import java.util.ArrayList;
 
 public class UserViewModel extends BaseObservable {
     private ArrayList<UserViewModel> userViewModels=new ArrayList<>();
-
+    public onItemInterface mListener;
     private String name;
     private String phone;
     private String address;
     private Context context;
+    private User user=new User(name,phone,address);
+
+    public User getUser() {
+        return user;
+    }
+
+    public Context getContext() {
+        return context;
+    }
 
     public UserViewModel(User user) {
         this.name = user.getName();
@@ -85,4 +97,16 @@ public class UserViewModel extends BaseObservable {
         this.userViewModels = userViewModels;
         notifyPropertyChanged(BR.userViewModels);
     }
+    public void onClickUser(View view,UserViewModel userViewModel) {
+        Context context = view.getContext();
+        Intent intent = new Intent(context, Main2Activity.class);
+        intent.putExtra("name",userViewModel.getName());
+        intent.putExtra("phone",userViewModel.getPhone());
+        intent.putExtra("address",userViewModel.getAddress());
+        context.startActivity(intent);
+
+    }
+    public void onSaveClick(User user){}
+
+
 }
