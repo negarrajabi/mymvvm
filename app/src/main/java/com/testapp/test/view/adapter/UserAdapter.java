@@ -14,12 +14,13 @@ import com.testapp.viewModel.UserViewModel;
 import java.util.ArrayList;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.customHolder>{
-    ArrayList<UserViewModel> userViewModels=new ArrayList<>();
+    ArrayList<UserViewModel> userViewModels;
     private LayoutInflater layoutInflater;
 
     public UserAdapter(ArrayList<UserViewModel> userViewModels) {
         this.userViewModels = userViewModels;
     }
+
 
     @NonNull
     @Override
@@ -56,8 +57,5 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.customHolder>{
 
         }
 
-        public RecyclerBinding getRecyclerBinding() {
-            return recyclerBinding;
-        }
     }
 }

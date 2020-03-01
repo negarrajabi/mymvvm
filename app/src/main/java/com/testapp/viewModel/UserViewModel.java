@@ -12,15 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.testapp.model.User;
-import com.testapp.test.Main2Activity;
-import com.testapp.test.onItemInterface;
+import com.testapp.test.view.Main2Activity;
 import com.testapp.test.view.adapter.UserAdapter;
 
 import java.util.ArrayList;
 
 public class UserViewModel extends BaseObservable {
     private ArrayList<UserViewModel> userViewModels=new ArrayList<>();
-    public onItemInterface mListener;
     private String name;
     private String phone;
     private String address;
@@ -41,6 +39,7 @@ public class UserViewModel extends BaseObservable {
         this.phone=user.getPhone();
     }
 
+        //read users info
     public UserViewModel(Context context) {
         this.context=context;
         for (int i = 0; i < 5 ; i++) {
@@ -53,6 +52,7 @@ public class UserViewModel extends BaseObservable {
 
 
     }
+    //fill recycler with users
     @BindingAdapter("bind:recyclerUser")
     public static void recyclerviewBinder(final RecyclerView recyclerView , final ArrayList<UserViewModel> userViewModels){
         UserAdapter userAdapter=new UserAdapter(userViewModels);
@@ -93,10 +93,7 @@ public class UserViewModel extends BaseObservable {
         return userViewModels;
     }
 
-    public void setUserViewModels(ArrayList<UserViewModel> userViewModels) {
-        this.userViewModels = userViewModels;
-        notifyPropertyChanged(BR.userViewModels);
-    }
+    //clicked user
     public void onClickUser(View view,UserViewModel userViewModel) {
         Context context = view.getContext();
         Intent intent = new Intent(context, Main2Activity.class);
@@ -106,7 +103,6 @@ public class UserViewModel extends BaseObservable {
         context.startActivity(intent);
 
     }
-    public void onSaveClick(User user){}
 
 
 }

@@ -1,4 +1,4 @@
-package com.testapp.test;
+package com.testapp.test.view;
 
 
 import android.app.Activity;
@@ -8,13 +8,13 @@ import android.os.Bundle;
 import androidx.databinding.DataBindingUtil;
 
 import com.testapp.model.User;
+import com.testapp.test.R;
 import com.testapp.test.databinding.ActivityMain2Binding;
 import com.testapp.viewModel.UserViewModel;
 
 public class Main2Activity extends Activity {
         User user;
         String s1,s2,s3;
-        int i;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
