@@ -18,12 +18,12 @@ import com.testapp.test.view.adapter.UserAdapter;
 import java.util.ArrayList;
 
 public class UserViewModel extends BaseObservable {
-    private ArrayList<UserViewModel> userViewModels=new ArrayList<>();
+    private ArrayList<UserViewModel> userViewModels = new ArrayList<>();
     private String name;
     private String phone;
     private String address;
     private Context context;
-    private User user=new User(name,phone,address);
+    private User user = new User(name, phone, address);
 
     public User getUser() {
         return user;
@@ -35,16 +35,16 @@ public class UserViewModel extends BaseObservable {
 
     public UserViewModel(User user) {
         this.name = user.getName();
-        this.address=user.getAddress();
-        this.phone=user.getPhone();
+        this.address = user.getAddress();
+        this.phone = user.getPhone();
     }
 
-        //read users info
+    //read users info
     public UserViewModel(Context context) {
-        this.context=context;
-        for (int i = 0; i < 5 ; i++) {
-            User user=new User("my name is:"+i,"phone number: 091234567"+i,"address:tehran no:"+i);
-            UserViewModel userViewModel=new UserViewModel(user);
+        this.context = context;
+        for (int i = 0; i < 5; i++) {
+            User user = new User("my name is:" + i, "phone number: 091234567" + i, "address:tehran no:" + i);
+            UserViewModel userViewModel = new UserViewModel(user);
             userViewModels.add(userViewModel);
 
         }
@@ -52,16 +52,16 @@ public class UserViewModel extends BaseObservable {
 
 
     }
+
     //fill recycler with users
     @BindingAdapter("bind:recyclerUser")
-    public static void recyclerviewBinder(final RecyclerView recyclerView , final ArrayList<UserViewModel> userViewModels){
-        UserAdapter userAdapter=new UserAdapter(userViewModels);
-        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext(),LinearLayoutManager.VERTICAL,false));
+    public static void recyclerviewBinder(final RecyclerView recyclerView, final ArrayList<UserViewModel> userViewModels) {
+        UserAdapter userAdapter = new UserAdapter(userViewModels);
+        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(userAdapter);
 
 
     }
-
 
 
     public String getName() {
@@ -94,12 +94,12 @@ public class UserViewModel extends BaseObservable {
     }
 
     //clicked user
-    public void onClickUser(View view,UserViewModel userViewModel) {
+    public void onClickUser(View view, UserViewModel userViewModel) {
         Context context = view.getContext();
         Intent intent = new Intent(context, Main2Activity.class);
-        intent.putExtra("name",userViewModel.getName());
-        intent.putExtra("phone",userViewModel.getPhone());
-        intent.putExtra("address",userViewModel.getAddress());
+        intent.putExtra("name", userViewModel.getName());
+        intent.putExtra("phone", userViewModel.getPhone());
+        intent.putExtra("address", userViewModel.getAddress());
         context.startActivity(intent);
 
     }

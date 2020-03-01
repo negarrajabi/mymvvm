@@ -16,8 +16,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMainBinding activityMainBinding= DataBindingUtil.setContentView(this, R.layout.activity_main,null);
-        UserViewModel userViewModel=new UserViewModel(this);
+        //create data binding
+        ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main, null);
+        UserViewModel userViewModel = new UserViewModel(this);
         activityMainBinding.setUser(userViewModel);
 
 
